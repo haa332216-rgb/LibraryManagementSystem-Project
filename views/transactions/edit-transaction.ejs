@@ -1,0 +1,79 @@
+<%- include("../partials/code-header") %>
+  <main class="main-content">
+    <h2 style="margin-bottom: 25px">Edit Transaction</h2>
+    <div class="form-wrapper">
+      <% if (typeof errors !=='undefined' && errors.length> 0) { %>
+        <div style="color: red">
+          <ul>
+            <% errors.forEach(error=> { %>
+              <li>
+                <%= error.msg %>
+              </li>
+              <% }) %>
+          </ul>
+        </div>
+        <% } %>
+          <form class="styled-form" action="/api/transactions/edit/<%= transaction._id %>" method="POST">
+            <div class="form-group">
+              <label for="userId">User</label>
+              <select name="userId" id="userId">
+                <option value="">-- Select User --</option>
+                <% users.forEach(user=> { %>
+                  <option value="<%= user._id %>" <%=oldInput.userId ? (oldInput.userId.toString()===user._id.toString()
+                    ? "selected" : "" ) : transaction.userId.toString()===user._id.toString() ? "selected" : "" %>><%=
+                      user.name %>
+                  </option>
+                  <% }) %>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="bookId">Book</label>
+              <select name="bookId" id="bookId">
+                <option value="">-- Select Book --</option>
+                <% books.forEach(book=> { %>
+                  <option value="<%= book._id %>" <%=oldInput.bookId ? (oldInput.bookId.toString()===book._id.toString()
+                    ? "selected" : "" ) : transaction.bookId.toString()===book._id.toString() ? "selected" : "" %>><%=
+                      book.title %>
+                  </option>
+                  <% }) %>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="issueDate">Issue Date</label>
+              <input type="date" name="issueDate" id="issueDate"
+                value="<%= oldInput.issueDate ? new Date(oldInput.issueDate).toISOString().substring(0,10) : transaction.issueDate.toISOString().substring(0,10) %>" />
+            </div>
+
+            <div class="form-group">
+              <label for="dueDate">Due Date</label>
+              <input type="date" name="dueDate" id="dueDate"
+                value="<%= oldInput.dueDate ? new Date(oldInput.dueDate).toISOString().substring(0,10) : transaction.dueDate.toISOString().substring(0,10) %>" />
+            </div>
+
+            <div class="form-group">
+              <label for="returnDate">Return Date</label>
+              <input type="text" id="returnDate"
+                value="<%= transaction.returnDate ? transaction.returnDate.toISOString().substring(0,10) : 'Not Returned Yet' %>"
+                readonly />
+            </div>
+
+            <div class="form-group">
+              <label for="status">Transaction Type</label>
+              <select name="status" id="status">
+                <option value="Issued" <%=transaction.status==="Issued" ? "selected" : "" %>>Issued</option>
+                <option value="Returned" <%=transaction.status==="Returned" ? "selected" : "" %>>Returned</option>
+              </select>
+            </div>
+
+            <div class="btn-group">
+              <button type="submit" class="btn submit-btn">Update Transaction</button>
+              <a href="#" class="btn btn-danger"
+                onclick="confirmDelete('/api/transactions/delete/<%= transaction._id %>')">Delete</a>
+              <a href="/api/transactions" class="btn btn-cancel">Cancel</a>
+            </div>
+          </form>
+    </div>
+  </main>
+  <%- include("../partials/code-footer") %>

@@ -1,0 +1,33 @@
+<%- include("../partials/code-header") %>
+<main class="main-content">
+  <div class="page-header">
+    <h1>Book Categories</h1>
+    <a href="/api/category/add" class="add-button">➕ Add Category</a>
+  </div>
+
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% categories.forEach((cat, index) => { %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= cat.name %></td>
+        <td><%= cat.description %></td>
+        <td class="action-links">
+          <a href="/api/category/<%= cat._id %>">View</a>
+          <a href="/api/category/edit/<%= cat._id %>">Edit</a>
+          <a href="#" style="color: red;" onclick="confirmDelete('/api/category/delete/<%= cat._id %>')">Delete</a>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</main>
+<%- include("../partials/code-footer") %>

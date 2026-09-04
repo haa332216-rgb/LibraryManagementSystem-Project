@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-yada-yada"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <style>
+      body {
+        background-color: #f2f8fc;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #1c1c1c;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        font-size: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .form-container {
+        width: 400px;
+        margin: 60px auto;
+        padding: 30px;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      form input {
+        width: 365px;
+        padding: 12px;
+        margin: 0 5px 0 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        transition: border-color 0.3s;
+      }
+
+      form input:focus {
+        border-color: #1c1c1c;
+        outline: none;
+      }
+
+      form button {
+        width: 390px;
+        padding: 12px;
+        margin: 0 5px 0 5px;
+        background-color: #1c1c1c;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      form button:hover {
+        background-color: #333;
+      }
+
+      .error {
+        color: red;
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      p {
+        text-align: center;
+        font-size: 0.9rem;
+      }
+
+      a {
+        color: #1c1c1c;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header><h2>Library System</h2></header>
+    <div class="form-container">
+      <h2>Login</h2>
+
+      <% if (errors && errors.length > 0) { %> <% errors.forEach((err) => { %>
+      <div class="error"><%= err.msg %></div>
+      <% }) %> <% } %>
+
+      <form action="/api/auth/login" method="POST">
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          value="<%= oldInput && oldInput.email ? oldInput.email : '' %>"
+        />
+        <input type="password" name="password" placeholder="Password" />
+        <button type="submit">Login</button>
+        <p>
+          Don’t have an account? <a href="/api/auth/signup">Sign up here</a>
+        </p>
+        <p>Go to <a href="/api/home">Home</a></p>
+      </form>
+      <hr />
+      <a
+        href="/api/auth/google"
+        style="
+          display: inline-block;
+          padding: 8px 16px;
+          background: #4285f4;
+          color: white;
+          text-decoration: none;
+          border-radius: 4px;
+          text-align: center;
+          width: 100%;
+          box-sizing: border-box;
+          margin-top: 10px;
+        "
+      >
+        <i class="fab fa-google"></i> Sign in with Google
+      </a>
+    </div>
+  </body>
+</html>

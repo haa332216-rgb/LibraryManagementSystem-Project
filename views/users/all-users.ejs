@@ -1,0 +1,38 @@
+<%- include("../partials/code-header") %>
+<main class="main-content">
+  <div class="page-header">
+    <h1><%= pageTitle %></h1>
+    <a href="/api/users/add" class="add-button">➕ Add <%= role === "admin" ? "Admin" : "User" %></a>
+  </div>
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Created At</th>
+        <th>Role</th>
+        <th>Active</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% userList.forEach((user, index) => { %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.createdAt.toISOString().split('T')[0] %></td>
+        <td><%= user.role %></td>
+        <td><%= user.isActive %></td>
+        <td class="action-links">
+          <a href="/api/users/<%= user._id %>">View</a>
+          <a href="/api/users/edit/<%= user._id %>">Edit</a>
+          <a href="#" style="color: red;" onclick="confirmDelete('/api/users/delete/<%= user._id %>')">Delete</a>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</main>
+<%- include("../partials/code-footer") %>

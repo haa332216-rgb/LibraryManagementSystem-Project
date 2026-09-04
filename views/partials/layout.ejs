@@ -1,0 +1,14 @@
+<!-- views/partials/layout.ejs -->
+<header><h2>Library Management System</h2></header>
+<nav class="sidebar">
+  <ul>
+    <li><a href="/api/users/personal/<%= userId %>" class="<%= page === 'personal' ? 'active' : '' %>">Personal Info</a></li>
+    <li><a href="/api/dashboard" class="<%= page === 'dashboard' ? 'active' : '' %>">Dashboard</a></li>
+    <li><a href="/api/books" class="<%= page === 'books' ? 'active' : '' %>">Books</a></li>
+    <li><a href="/api/category" class="<%= page === 'categories' ? 'active' : '' %>">Categories</a></li>
+    <li><a href="/api/users/user" class="<%= page === 'user' ? 'active' : '' %>">Users</a></li>
+    <li><a href="/api/users/admin" class="<%= page === 'admin' ? 'active' : '' %>">Admins</a></li>
+    <li><a href="/api/transactions" class="<%= page === 'transactions' ? 'active' : '' %>">Transactions</a></li>
+    <li><a href="/api/auth/logout">Logout</a></li>
+  </ul>
+</nav>

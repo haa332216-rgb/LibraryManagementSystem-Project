@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title><%= pageTitle %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        background-color: #f2f8fc;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #1c1c1c;
+        color: white;
+        padding: 5px;
+        text-align: center;
+        font-size: 1.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      }
+      .form-container {
+        width: 400px;
+        margin: 60px auto;
+        padding: 30px;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      form input {
+        width: 365px;
+        padding: 12px;
+        margin: 0 5px 0 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        transition: border-color 0.3s;
+      }
+
+      form input:focus {
+        border-color: #1c1c1c;
+        outline: none;
+      }
+
+      /* Button */
+      form button {
+        width: 390px;
+        padding: 12px;
+        margin: 0 5px 0 5px;
+        background-color: #1c1c1c;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      form button:hover {
+        background-color: #333;
+      }
+
+      a {
+        color: #1c1c1c;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      p {
+        text-align: center;
+        font-size: 0.9rem;
+      }
+    </style>
+    <script src="/js/common.js"></script>
+  </head>
+  <body>
+    <main class="signup-page">
+      <header><h2>Library System</h2></header>
+      <div class="form-container">
+        <h2>Create Account</h2>
+
+        <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+        <div style="color: red">
+          <ul>
+            <% errors.forEach(error => { %>
+            <li><%= error.msg %></li>
+            <% }) %>
+          </ul>
+        </div>
+        <% } %>
+
+        <form class="styled-form" action="/api/auth/signup" method="POST">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Name"
+            value="<%= oldInput?.name || '' %>"
+          />
+
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email Address"
+            value="<%= oldInput?.email || '' %>"
+          />
+
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+          />
+
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+            placeholder="Confirm Password"
+          />
+
+          <button type="submit">Sign Up</button>
+          <p>
+            Already have an account?
+            <a href="/api/auth/login">Login here</a>
+          </p>
+          <p>Go to <a href="/api/home">Home</a></p>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<%- include("../partials/code-header") %>
+<main class="main-content">
+  <h2 style="margin-bottom: 25px">Personal Details</h2>
+  <% if (typeof success !=='undefined' && success.length> 0) { %>
+  <div style="color: green;"><%= success %></div>
+  <% } %>
+  <div class="content-details">
+    <div class="detail-item">
+      <span class="label">Name:</span>
+      <span class="value"><%= user.name %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Email:</span>
+      <span class="value"><%= user.email %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Created At:</span>
+      <span class="value"><%= user.createdAt.toISOString().split('T')[0] %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Role:</span>
+      <span class="value"><%= user.role %></span>
+    </div>
+  </div>
+
+  <a href="/api/users/pw/<%= user._id %>" class="btn">Change Password</a>
+  <a href="/api/dashboard" class="btn btn-cancel">Back</a>
+</main>
+<%- include("../partials/code-footer") %>

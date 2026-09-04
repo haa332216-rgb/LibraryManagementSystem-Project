@@ -1,0 +1,63 @@
+<%- include("../partials/code-header") %>
+<main class="main-content">
+  <h2 style="margin-bottom: 25px">Add New Book</h2>
+  <div class="form-wrapper">
+    <div class="form-wrapper">
+    <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+    <div style="color: red">
+      <ul>
+        <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+    </div>
+    <% } %>
+    <form class="styled-form" action="/api/books" method="POST">
+      <div class="form-group">
+        <label for="title">Book Title</label>
+        <input type="text" name="title" id="title" value="<%= oldInput?.title || '' %>"/>
+      </div>
+
+      <div class="form-group">
+        <label for="authorName">Author Name</label>
+        <input type="text" name="authorName" id="authorName" value="<%= oldInput?.authorName || '' %>"/>
+      </div>
+
+      <div class="form-group">
+        <label for="isbn">ISBN</label>
+        <input type="text" name="isbn" id="isbn" value="<%= oldInput?.isbn || '' %>"/>
+      </div>
+
+      <div class="form-group">
+        <label for="categoryId">Category</label>
+        <select name="categoryId" id="categoryId">
+          <option value="">--Select Category--</option>
+          <% categories.forEach(cat => { %>
+          <option value="<%= cat._id %>" <%= oldInput?.categoryId == cat._id ? 'selected' : '' %>><%= cat.name %></option>
+          <% }) %>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="totalCopies">Total Number of Copies</label>
+        <input type="number" name="totalCopies" id="totalCopies" value="<%= oldInput?.totalCopies || '' %>"/>
+      </div>
+
+      <div class="form-group">
+        <label for="copiesAvailable">Number of Available Copies</label>
+        <input type="number" name="copiesAvailable" id="copiesAvailable" value="<%= oldInput?.copiesAvailable|| '' %>"/>
+      </div>
+
+      <div class="form-group">
+        <label for="shelfLocation">Shelf Location</label>
+        <input type="text" name="shelfLocation" id="shelfLocation" value="<%= oldInput?.shelfLocation || '' %>"/>
+      </div>
+
+      <div class="btn-group">
+        <button type="submit" class="btn submit-btn">Add Book</button>
+        <a href="/api/books" class="btn btn-cancel">Cancel</a>
+      </div>
+    </form>
+  </div>
+</main>
+<%- include("../partials/code-footer") %>

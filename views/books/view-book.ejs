@@ -1,0 +1,45 @@
+<%- include("../partials/code-header") %>
+<main class="main-content">
+  <h2 style="margin-bottom: 25px">Book Details</h2>
+
+  <div class="content-details">
+    <div class="detail-item">
+      <span class="label">Book ID:</span>
+      <span class="value"><%= book._id %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Title:</span>
+      <span class="value"><%= book.title %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">ISBN:</span>
+      <span class="value"><%= book.isbn %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Author:</span>
+      <span class="value"><%= book.authorName %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Category:</span>
+      <span class="value"><%= book.categoryId ? book.categoryId.name : 'Uncategorized' %></span>
+    </div>
+    
+    <div class="detail-item">
+      <span class="label">Total Copies:</span>
+      <span class="value"><%= book.totalCopies %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Available Copies:</span>
+      <span class="value"><%= book.copiesAvailable %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Shelf Location:</span>
+      <span class="value"><%= book.shelfLocation %></span>
+    </div>
+  </div>
+
+  <a href="/api/books/edit/<%= book._id %>" class="btn">Update Book</a>
+  <a href="#" class="btn btn-danger" onclick="confirmDelete('/api/books/delete/<%= book._id %>')">Delete Book</a>
+  <a href="/api/books" class="btn btn-cancel">Cancel</a>
+</main>
+<%- include("../partials/code-footer") %>

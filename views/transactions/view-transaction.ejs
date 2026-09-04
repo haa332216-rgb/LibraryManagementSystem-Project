@@ -1,0 +1,40 @@
+<%- include("../partials/code-header") %>
+<main class="main-content">
+  <h2 style="margin-bottom: 25px">Transaction Details</h2>
+
+  <div class="content-details">
+    <div class="detail-item">
+      <span class="label">Transaction ID:</span>
+      <span class="value"><%= transaction._id %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Book Title:</span>
+      <span class="value"><%= transaction.bookId ? transaction.bookId.title : 'Unknown' %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">User:</span>
+      <span class="value"><%= transaction.userId ? transaction.userId.name : 'Unknown' %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Issue Date:</span>
+      <span class="value"><%= transaction.issueDate.toISOString().substring(0,10) %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Due Date:</span>
+      <span class="value"><%= transaction.dueDate.toISOString().substring(0,10) %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Return Date:</span>
+      <span class="value"><%= transaction.returnDate ? transaction.returnDate.toISOString().substring(0,10) : 'N/A' %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Status:</span>
+      <span class="value"><%= transaction.status %></span>
+    </div>
+  </div>
+
+  <a href="/api/transactions/edit/<%= transaction._id %>" class="btn">Update transaction</a>
+  <a href="#" class="btn btn-danger" onclick="confirmDelete('/api/transactions/delete/<%= transaction._id %>')">Delete transaction</a>
+  <a href="/api/transactions" class="btn btn-cancel">Cancel</a>
+</main>
+<%- include("../partials/code-footer") %>

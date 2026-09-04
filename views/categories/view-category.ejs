@@ -1,0 +1,23 @@
+<%- include("../partials/code-header") %>
+<main class="main-content">
+  <h2 style="margin-bottom: 25px">Category Details</h2>
+
+  <div class="content-details">
+    <div class="detail-item">
+      <span class="label">Category ID:</span>
+      <span class="value"><%= categories._id %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Category Name:</span>
+      <span class="value"><%= categories.name %></span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Description:</span>
+      <span class="value"><%= categories.description %></span>
+    </div>
+  </div>
+  <a href="/api/category/edit/<%= categories._id %>" class="btn">Edit Category</a>
+  <a href="#" class="btn btn-danger" onclick="confirmDelete('/api/category/delete/<%= categories._id %>')">Delete Category</a>
+  <a href="/api/category" class="btn btn-cancel">Cancel</a>
+</main>
+<%- include("../partials/code-footer") %>

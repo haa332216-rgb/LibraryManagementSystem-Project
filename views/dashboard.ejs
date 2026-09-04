@@ -1,0 +1,44 @@
+<%- include("./partials/code-header.ejs") %>
+<div class="container">
+  <main class="main-content">
+    <h1>Dashboard</h1>
+    <div class="card-grid">
+      <div class="card">
+        <h3><%= totalUsers %></h3>
+        <p>Total Users</p>
+      </div>
+      <div class="card">
+        <h3><%= totalAdmins %></h3>
+        <p>Total Admins</p>
+      </div>
+      <div class="card">
+        <h3><%= totalBooks %></h3>
+        <p>Total Books</p>
+      </div>
+      <div class="card">
+        <h3><%= issuedBooks %></h3>
+        <p>Issued Books</p>
+      </div>
+      <div class="card">
+        <h3><%= returnedBooks %></h3>
+        <p>Returned Books</p>
+      </div>
+    </div>
+    <div class="quick-actions">
+      <a href="/api/users/add" class="btn">+ New User</a>
+      <a href="/api/books/add" class="btn">+ New Book</a>
+      <a href="/api/category/add" class="btn">+ Category</a>
+      <a href="/api/transactions/add" class="btn">+ Issue Book</a>
+    </div>
+
+    <div class="notices">
+      <h4>Admin Notes</h4>
+      <ul>
+        <li>Don’t forget to return pending books.</li>
+        <li>Check overdue members weekly.</li>
+        <li>Update catalog for new arrivals.</li>
+      </ul>
+    </div>
+  </main>
+</div>
+<%- include("./partials/code-footer.ejs") %>

@@ -1,0 +1,42 @@
+<%- include("../partials/code-header") %>
+<main class="main-content">
+  <div class="page-header">
+    <h1>Book Transactions</h1>
+    <a href="/api/transactions/add" class="add-button">➕ Add Book Issuance</a>
+  </div>
+
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Transaction ID</th>
+        <th>User</th>
+        <th>Book</th>
+        <th>Issued Date</th>
+        <th>Due Date</th>
+        <th>Return Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% transactions.forEach((txn, index) => { %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= txn.userId ? txn.userId.name : 'Unknown' %></td>
+        <td><%= txn.bookId ? txn.bookId.title : 'Unknown' %></td>
+        <td><%= txn.issueDate.toISOString().substring(0,10) %></td>
+        <td><%= txn.dueDate.toISOString().substring(0,10) %></td>
+        <td><%= txn.returnDate ? txn.returnDate.toISOString().substring(0,10) : 'N/A' %></td>
+        <td><%= txn.status %></td>
+        <td class="action-links">
+          <a href="/api/transactions/<%= txn._id %>">View</a>
+          <a href="/api/transactions/edit/<%= txn._id %>">Edit</a>
+          <a href="#" style="color: red;" onclick="confirmDelete('/api/transactions/delete/<%= txn._id %>')">Delete</a>
+          <!-- <a href="/transactions/delete/%= txn._id %>" style="color: red">Delete</a> -->
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</main>
+<%- include("../partials/code-footer") %>

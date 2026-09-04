@@ -1,0 +1,54 @@
+<%- include("../partials/code-header") %>
+  <main class="main-content">
+    <h2 style="margin-bottom: 25px">Add New User</h2>
+    <div class="form-wrapper">
+      <div class="form-wrapper">
+        <% if (typeof errors !=='undefined' && errors.length> 0) { %>
+          <div style="color: red">
+            <ul>
+              <% errors.forEach(error=> { %>
+                <li>
+                  <%= error.msg %>
+                </li>
+                <% }) %>
+            </ul>
+          </div>
+          <% } %>
+            <form class="styled-form" action="/api/users" method="POST">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" value="<%= oldInput?.name || '' %>" />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" value="<%= oldInput?.email || '' %>" />
+              </div>
+
+              <div class="form-group">
+                <label for="role">User Role</label>
+                <select name="role" id="role">
+                  <option value="user" <%=oldInput?.role=="user" ? 'selected' : '' %>>User</option>
+                  <option value="admin" <%=oldInput?.role=="admin" ? 'selected' : '' %>>Admin</option>
+                </select>
+
+                <div class="form-group">
+                  <label for="isActive">Is Active</label>
+                  <select name="isActive" id="isActive">
+                    <option value="Y" <%=oldInput?.isActive=="Y" ? 'selected' : '' %>>Yes</option>
+                    <option value="N" <%=oldInput?.isActive=="N" ? 'selected' : '' %>>No</option>
+                  </select>
+                </div>
+
+                <div class="form-group" style="display: none;">
+                  <input type="password" name="password" value="123456" />
+                </div>
+
+                <div class="btn-group">
+                  <button type="submit" class="btn submit-btn">Add User</button>
+                  <a href="/api/users/<%= role %>" class="btn btn-cancel">Cancel</a>
+                </div>
+            </form>
+      </div>
+  </main>
+  <%- include("../partials/code-footer") %>
